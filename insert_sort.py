@@ -10,6 +10,7 @@ def insert_sort(data):
                     data[i], data[j] = data[j], data[i]
                 j += 1
             i += 1
+            j = i + 1
     return data
 ####test code#####
 data1 = []
