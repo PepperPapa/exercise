@@ -4,13 +4,22 @@
     <meta charset="utf-8">
     <title>Google</title>
     <style type="text/css">
-      body {
+      html, body {
         margin: 0;
         padding: 0;
+        width: 100%;
+        text-align: center;
+        height: 100%;
       }
+
+      /* container */
+      .container {
+        min-height: 100%;
+      }
+
+      /* 菜单部分 */
       .header {
         display: block;
-        width: 100%;
         height: 30px;
         margin: 0;
         padding: 0;
@@ -18,7 +27,6 @@
       }
       ul {
         list-style: none;
-        height: 100%;
         margin: 0;
       }
       ul#menu {
@@ -31,39 +39,105 @@
       }
       ul li{
         display: inline;
-        text-align: center;
-        height: 100%;
       }
-      a {
+      .header a {
         font: 13px/27px Arial,sans-serif;
         float: left;
-        height: 100%;
         padding-left: 5px;
         padding-right: 5px;
-        text-align: center;
         text-decoration: none;
-        color: white;
+        color: #d0d0d0;
       }
-      a:hover {background-color: #555;}
+      .header a:hover {
+        color: white;
+        border-top: 2px solid #c00000;
+        background-color: #555;
+      }
+
+      /* google logo */
+      .logo {
+        margin-top: 160px;
+      }
+
+      /* 搜索框区域 */
+      .input {
+      }
+      .text_input input{
+        width: 620px;
+        height: 32px;
+        margin-top: 25px;
+        /*toDO：输入框边框还无法做到更细更淡，一旦修改颜色边框的样式就不对了 */
+      }
+      .text_input img {
+      }
+
+
+      / * footer */
+      .footer {
+        display: block;
+        height: 60px;
+        background-color: #d8d8d8;
+      }
+      ul#business {
+        float: left;
+      }
+      ul#law {
+        float: right;
+      }
     </style>
   </head>
   <body>
-    <div class="header">
-        <ul id="menu">
-          <li><a href="#">Google+</a></li>
-          <li><a href="#">搜索</a></li>
-          <li><a href="#">图片</a></li>
-          <li><a href="#">地图</a></li>
-          <li><a href="#">Play</a></li>
-          <li><a href="#">YouTube</a></li>
-          <li><a href="#">新闻</a></li>
-          <li><a href="#">Gmail</a></li>
-          <li><a href="#">更多</a></li>
+    <div class="container">
+      <div class="header">
+          <ul id="menu">
+            <li><a href="#">Google+</a></li>
+            <li><a href="#">搜索</a></li>
+            <li><a href="#">图片</a></li>
+            <li><a href="#">地图</a></li>
+            <li><a href="#">Play</a></li>
+            <li><a href="#">YouTube</a></li>
+            <li><a href="#">新闻</a></li>
+            <li><a href="#">Gmail</a></li>
+            <li><a href="#">更多</a></li>
+          </ul>
+          <ul id="account">
+            <li><a href="#">登陆</a></li>
+            <li><a href="#">设置</a></li>
+          </ul>
+      </div>
+        <div class="logo">
+          <img src="images/google.png" alt="Google logo" />
+        </div>
+        <div class="input">
+          <form class="text_input">
+            <input type="input" name="search_value" value="">
+            <img src="images/voice_input.png" alt="按语音搜索" />
+          </form>
+        </div>
+        <div class="search">
+          <form class="do_search">
+            <input type="button" name="Go" value="Google搜索">
+            <input type="button" name="lucky" value="手气不错">
+          </form>
+        </div>
+        <div class="language">
+          <p>
+            Google.com.hk 使用下列语言：<a href="#">中文（繁體）</a>
+            <a href="#">English</a>
+          </p>
+        </div>
+      <div class="footer">
+        <ul id="business">
+          <li>广告</li>
+          <li>商务</li>
+          <li>Google大全</li>
         </ul>
-        <ul id="account">
-          <li><a href="#">登陆</a></li>
-          <li><a href="#">设置</a></li>
+        <ul id="law">
+          <li>隐私权</li>
+          <li>条款</li>
+          <li>设置</li>
         </ul>
-    </div>
+      </div>
+  </div>
   </body>
 </html>
