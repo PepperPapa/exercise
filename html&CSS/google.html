@@ -8,26 +8,28 @@
         margin: 0;
         padding: 0;
         width: 100%;
-        text-align: center;
         height: 100%;
+        text-align: center;
       }
 
       /* container */
       .container {
         min-height: 100%;
+        _height: 100%;
+        margin-bottom: -60px;
+        display: block;
       }
 
       /* 菜单部分 */
       .header {
         display: block;
         height: 30px;
-        margin: 0;
-        padding: 0;
         background-color: #2d2d2d;
       }
       ul {
         list-style: none;
         margin: 0;
+        padding: 0;
       }
       ul#menu {
         float: left;
@@ -50,33 +52,33 @@
       }
       .header a:hover {
         color: white;
-        border-top: 2px solid #c00000;
+        /*border-top: 2px solid #c80000;*/
         background-color: #555;
       }
 
       /* google logo */
       .logo {
+        clear: both;
         margin-top: 160px;
       }
 
       /* 搜索框区域 */
-      .input {
-      }
-      .text_input input{
+      .text_input input {
         width: 620px;
         height: 32px;
         margin-top: 25px;
         /*toDO：输入框边框还无法做到更细更淡，一旦修改颜色边框的样式就不对了 */
       }
       .text_input img {
+        margin-top: 25px;
+        height: 32px;
       }
 
-
       / * footer */
-      .footer {
-        display: block;
+      .footer .push {
         height: 60px;
-        background-color: #d8d8d8;
+        background-color: #c00000;
+        display: block;
       }
       ul#business {
         float: left;
@@ -105,39 +107,40 @@
             <li><a href="#">设置</a></li>
           </ul>
       </div>
-        <div class="logo">
-          <img src="images/google.png" alt="Google logo" />
-        </div>
-        <div class="input">
-          <form class="text_input">
-            <input type="input" name="search_value" value="">
-            <img src="images/voice_input.png" alt="按语音搜索" />
-          </form>
-        </div>
-        <div class="search">
-          <form class="do_search">
-            <input type="button" name="Go" value="Google搜索">
-            <input type="button" name="lucky" value="手气不错">
-          </form>
-        </div>
-        <div class="language">
-          <p>
-            Google.com.hk 使用下列语言：<a href="#">中文（繁體）</a>
-            <a href="#">English</a>
-          </p>
-        </div>
-      <div class="footer">
-        <ul id="business">
-          <li>广告</li>
-          <li>商务</li>
-          <li>Google大全</li>
-        </ul>
-        <ul id="law">
-          <li>隐私权</li>
-          <li>条款</li>
-          <li>设置</li>
-        </ul>
+      <div class="logo">
+        <img src="images/google.png" alt="Google logo" />
       </div>
-  </div>
+      <div class="input">
+        <form class="text_input">
+          <input type="input" name="search_value" value="">
+          <img src="images/voice_input.png" alt="按语音搜索" />
+        </form>
+      </div>
+      <div class="search">
+        <form class="do_search">
+          <input type="button" name="Go" value="Google搜索">
+          <input type="button" name="lucky" value="手气不错">
+        </form>
+      </div>
+      <div class="language">
+        <p>
+          Google.com.hk 使用下列语言：<a href="#">中文（繁體）</a>
+          <a href="#">English</a>
+        </p>
+      </div>
+      <div class="push"></div>
+    </div>
+    <div class="footer">页脚
+      <!--<ul id="business">
+        <li>广告</li>
+        <li>商务</li>
+        <li>Google大全</li>
+      </ul>
+      <ul id="law">
+        <li>隐私权</li>
+        <li>条款</li>
+        <li>设置</li>
+      </ul>-->
+    </div>
   </body>
 </html>
