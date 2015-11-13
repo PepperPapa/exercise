@@ -10,20 +10,21 @@
         width: 100%;
         height: 100%;
         text-align: center;
+        font: 13px/27px Arial,sans-serif;
       }
 
       /* container */
       .container {
         min-height: 100%;
         _height: 100%;
-        margin-bottom: -60px;
+        margin-bottom: -35px;
         display: block;
       }
 
       /* 菜单部分 */
       .header {
         display: block;
-        height: 30px;
+        height: 27px;
         background-color: #2d2d2d;
       }
       ul {
@@ -43,10 +44,10 @@
         display: inline;
       }
       .header a {
-        font: 13px/27px Arial,sans-serif;
+        /*font: 13px/27px Arial,sans-serif;*/
         float: left;
-        padding-left: 5px;
-        padding-right: 5px;
+        display: block;
+        padding: 0 5px;
         text-decoration: none;
         color: #d0d0d0;
       }
@@ -73,18 +74,54 @@
         margin-top: 25px;
         height: 32px;
       }
-
-      / * footer */
-      .footer .push {
-        height: 60px;
-        background-color: #c00000;
-        display: block;
+      #push {
+        height: 35px;
       }
-      ul#business {
+
+      /* search */
+      .search {
+        margin-top: 25px;
+      }
+      .do_search input {
+        width: 110px;
+        height: 42px;
+        margin: 0;
+        padding: 0;
+        border-style: nWone;
+        background-color: #e8e8e8;
+        color: #686868;
+        font-size: 15px;
+      }
+
+      /* language */
+      .language {
+        margin-top: 25px;
+      }
+
+      /* footer */
+      #footer {
+        height: 35px;
+        background-color: #e8e8e8;
+        /*font: 13px/27px Arial,sans-serif;*/
+        color: #686868;
+      }
+      #business {
         float: left;
       }
-      ul#law {
+      #law {
         float: right;
+      }
+      #business #law li {
+        display: inline;
+      }
+      #footer a {
+        text-align: center;
+        text-decoration: none;
+        color: inherit;
+      }
+      #footer a:hover {
+        color: #inherit;
+        text-decoration: underline;
       }
     </style>
   </head>
@@ -128,19 +165,19 @@
           <a href="#">English</a>
         </p>
       </div>
-      <div class="push"></div>
+      <div id="push"></div>
     </div>
-    <div class="footer">页脚
-      <!--<ul id="business">
-        <li>广告</li>
-        <li>商务</li>
-        <li>Google大全</li>
+    <div id="footer">
+      <ul id="business">
+        <li><a href="#">广告</a></li>
+        <li><a href="#">商务</a></li>
+        <li><a href="#">Google大全</a></li>
       </ul>
       <ul id="law">
-        <li>隐私权</li>
-        <li>条款</li>
-        <li>设置</li>
-      </ul>-->
+        <li><a href="#">隐私权</a></li>
+        <li><a href="#">条款</a></li>
+        <li><a href="#">设置</a></li>
+      </ul>
     </div>
   </body>
 </html>
