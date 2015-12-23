@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML5 Layout</title>
+  <style type="text/css">
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  #demo {
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 0;
+    width: 96px;
+    height: 96px;
+    border: 2px solid;
+    position: relative;
+
+  }
+  #corner {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 20px;
+    right: -13px;
+    width: 22px;
+    height: 22px;
+    border-width: 2px 2px 2px 2px;
+    border-style: solid;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    transform: rotate(45deg);
+    z-index: 2;
+    background-color: white;
+  }
+
+  </style>
+</head>
+<body>
+  <div id="demo">
+    <div id="corner">
+    </div>
+  </div>
+</body>
+</html>

@@ -1,35 +1,44 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Google</title>
-    <style type="text/css">
-      #link {
-        height: 80px;
-        line-height: 80px;
-        background-color: gray;
-        border: solid;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-      }
-      #link span {
-      }
-      #link a {
-        display: inline-block;
-        background-color: red;
-      }
-    </style>
-</head>
-  <body>
-    <div id="link">
-      <span>
-        <a href="#">test1</a>
-        <a href="#">test1</a>
-        <a href="#">test1</a>
-        <a href="#">test1</a>
-        <a href="#">test1</a>
-      </span>
-    </div>
-  </body>
+<body>
+<style type="text/css">
+
+ span{
+   height:40px;
+   width:40px;
+   display:block;
+   position:relative;
+   border: 1px solid;
+ }
+
+.demoSpan1{
+  position:relative;
+}
+
+.demoSpan1:before{
+  content:'';
+  height:20px;
+  width:12px;
+  display:block;
+  background:#333;
+  border-radius:4px 0 0 4px;
+  -webkit-border-radius:4px 0 0 4px;
+  -moz-border-radius:4px 0 0 4px;
+  position:absolute; top:10px; left:6px; }
+
+.demoSpan1:after{
+content:'';
+height:20px;
+width:0;
+display:block;
+border:10px transparent solid;
+border-left-width:0;
+border-right-color:#333;
+position:absolute;
+top:0px;
+left:20px; }
+
+</style>
+<span class="demoSpan1">
+</span>
+</body>
 </html>
