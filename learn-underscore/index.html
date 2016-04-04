@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>learn backbone</title>
+</head>
+<body>
+  <div id="search-container"></div>
+  <script type="text/template" id="search-template">
+    <label><%= search_label %></label>
+    <input type="text" id="search-input">
+    <input type="button" id="search-button" value="Search">
+  </script>
+  <script src="jquery-1.12.2.js"></script>
+  <script src="underscore.js"></script>
+  <script src="backbone.js"></script>
+
+  <script>
+    var SearchView = Backbone.View.extend({
+      initialize: function(){
+        this.render();
+      },
+      events: {
+        "click input[type=button]": "doSearch"
+      },
+      render: function() {
+        var variables = {search_label: "My Search"};
+        var template = _.template($('#search-template').html())(variables);
+        this.$el.html(template);
+      },
+      doSearch: function(event) {
+        console.log("Search for " + $('#search-input').val());
+      }
+    });
+
+    // The initialize function is always called when instantiating a Backbone View.
+    // Consider it the constructor of the class.
+    var search_view = new SearchView({el: $('#search-container')});
+
+
+
+    // =====================another example=======================
+    var Song = Backbone.Model.extend({
+      defaults: {
+        name: '',
+        artist: ''
+      },
+      initialize: function() {
+        console.log("Music is the answer");
+      }
+    });
+
+    var Album = Backbone.Collection.extend({
+      model: Song
+    });
+
+    var song1 = new Song({name: "How Bizarre", artist: "OMC"});
+    var song2 = new Song({name: "Sexual Healing", artist: "Marvin Gaye"});
+    var song3 = new Song({name: "Talk It Over In Bed", artist: "OMC"});
+
+    var myAlbum = new Album([song1, song2, song3]);
+    console.log(myAlbum.models);
+  </script>
+</body>
+</html>
