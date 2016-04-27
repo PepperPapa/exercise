@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>learn flex layout</title>
+  <style>
+    .box {
+      float: left;
+      display: flex;
+      margin: 5px;
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      border: 10px solid #ddd;
+      background-color: #eee;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+    .item {
+      display: block;
+      width: 14px;
+      height: 14px;
+      background-color: gray;
+      border-radius: 50%;
+      border: 3px solid #eee;
+    }
+    .center {
+      justify-content: center;
+    }
+    .right {
+      justify-content: flex-end;
+    }
+    .vcenter {
+      align-items: center;
+    }
+    .vbottom {
+      align-items: flex-end;
+    }
+    .space {
+      justify-content: space-between;
+    }
+    .aspace {
+      align-content: space-between;
+    }
+    .vspace {
+      justify-content: space-between;
+      flex-direction: column;
+    }
+    #left-top-center .item:nth-child(2) {
+      align-self: center;
+    }
+    #left-top-right-bottom .item:nth-child(2) {
+      align-self: flex-end;
+    }
+    #diagonal .item:nth-child(2) {
+      align-self: center;
+    }
+    #diagonal .item:nth-child(3) {
+      align-self: flex-end;
+    }
+    #num4-1 {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-content: space-between;
+    }
+    .wrap {
+      flex-wrap: wrap;
+    }
+    .column {
+      flex-basis: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+    .row {
+      flex-basis: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+    .row:nth-child(2) {
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="box default">
+    <span class="item"></span>
+  </div>
+  <div class="box center">
+    <span class="item"></span>
+  </div>
+  <div class="box right">
+    <span class="item"></span>
+  </div>
+  <div class="box vcenter">
+    <span class="item"></span>
+  </div>
+  <div class="box center vcenter">
+    <span class="item"></span>
+  </div>
+  <div class="box center vbottom">
+    <span class="item"></span>
+  </div>
+  <div class="box right vbottom">
+    <span class="item"></span>
+  </div>
+  <div class="box space">
+    <span class="item"></span>
+    <span class="item"></span>
+  </div>
+  <div class="box vspace">
+    <span class="item"></span>
+    <span class="item"></span>
+  </div>
+  <div class="box vspace vcenter">
+    <span class="item"></span>
+    <span class="item"></span>
+  </div>
+  <div class="box vspace vbottom">
+    <span class="item"></span>
+    <span class="item"></span>
+  </div>
+  <!-- TODO:zx 未达预期 -->
+  <div class="box" id="left-top-center">
+    <span class="item"></span>
+    <span class="item"></span>
+  </div>
+  <div class="box space" id="left-top-right-bottom">
+    <span class="item"></span>
+    <span class="item"></span>
+  </div>
+  <div class="box space" id="diagonal">
+    <span class="item"></span>
+    <span class="item"></span>
+    <span class="item"></span>
+  </div>
+  <!-- TODO:zx 未达预期 -->
+  <div class="box" id="num4-1">
+    <span class="item"></span>
+    <span class="item"></span>
+    <span class="item"></span>
+    <span class="item"></span>
+  </div>
+  <!-- TODO:zx 未达预期 -->
+  <div class="box aspace wrap">
+    <div class="column">
+      <span class="item"></span>
+      <span class="item"></span>
+    </div>
+    <div class="column">
+      <span class="item"></span>
+      <span class="item"></span>
+    </div>
+  </div>
+  <div class="box wrap aspace">
+    <span class="item"></span>
+    <span class="item"></span>
+    <span class="item"></span>
+    <span class="item"></span>
+    <span class="item"></span>
+    <span class="item"></span>
+  </div>
+  <div class="box wrap vspace aspace">
+    <span class="item"></span>
+    <span class="item"></span>
+    <span class="item"></span>
+    <span class="item"></span>
+    <span class="item"></span>
+    <span class="item"></span>
+  </div>
+  <div class="box wrap">
+    <div class="row">
+      <span class="item"></span>
+      <span class="item"></span>
+      <span class="item"></span>
+    </div>
+    <div class="row">
+      <span class="item"></span>
+    </div>
+    <div class="row">
+      <span class="item"></span>
+      <span class="item"></span>
+    </div>
+  </div>
+  <div class="box wrap aspace">
+    <span class="item"></span>
+    <span class="item"></span>
+    <span class="item"></span>
+    <span class="item"></span>
+    <span class="item"></span>
+    <span class="item"></span>
+    <span class="item"></span>
+    <span class="item"></span>
+    <span class="item"></span>
+  </div>
+</body>
+</html>
