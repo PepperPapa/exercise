@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>flex input example</title>
+  <style>
+    .inputaddon {
+      display: flex;
+      margin: 5px 5px;
+    }
+    .inputaddon-field {
+      /*flex: 1;*/
+      border: 1px solid lightgray;
+      border-left: 0;
+      border-right: 0;
+    }
+    .inputaddon-item {
+      color: gray;
+      font-family: sans-serif;
+      padding: 5px;
+      background-color: #eee;
+      border: 1px solid lightgray;
+    }
+    input,
+    button {
+      outline: none;
+    }
+    button:hover {
+      background-color: #ddd;
+    }
+    .media {
+      display: flex;
+      align-items: flex-start;
+      color: gray;
+      background-color: #eee;
+      border-radius: 5px;
+      margin: 10px 10px;
+    }
+    .media-img,
+    .media-symbol {
+      margin: 1em 1em;
+    }
+    .media-body {
+      flex: 0 0 20em;
+    }
+    .parent {
+      margin: 10px;
+      width: 200px;
+      height: 150px;
+      background-color: gray;
+      display: flex;
+      flex-flow: row wrap;
+      align-content: flex-start;
+    }
+    .child {
+      box-sizing: border-box;
+      background-color: white;
+      flex: 0 0 25%;
+      height: 50px;
+      border: 1px solid green;
+    }
+  </style>
+</head>
+<body>
+  <!-- 输入框前方添加提示，后方添加按钮 -->
+  <div class="inputaddon">
+    <!-- 使用unicode字符 -->
+    <span class="inputaddon-item">&#10084</span>
+    <input type="text" class="inputaddon-field">
+    <button class="inputaddon-item">&#10148</button>
+  </div>
+  <div class="inputaddon">
+    <!-- 使用unicode字符 -->
+    <span class="inputaddon-item">Amount</span>
+    <input type="text" class="inputaddon-field">
+    <button class="inputaddon-item">Go</button>
+  </div>
+
+  <!-- 主栏左侧或右侧需添加图片栏或符号栏 -->
+  <div class="media">
+    <img class="media-img" src="images/logo.png" alt="">
+    <p class="media-body">The tests of the influence of odd harmonics shall be
+      made with the circuit shown in Figure A.1 or with other equipment able to
+       generate the required waveforms, and the current waveforms as shown
+       Figure A.5 respectively.</p>
+  </div>
+  <div class="media">
+    <span class="media-symbol">&#10084</span>
+    <p class="media-body">The tests of the influence of odd harmonics shall be
+      made with the circuit shown in Figure A.1 or with other equipment able to
+       generate the required waveforms, and the current waveforms as shown
+       Figure A.5 respectively.</p>
+  </div>
+
+  <!-- 流式布局:每行的项目数固定，会自动分行 -->
+  <div class="parent">
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+  </div>
+  <div class="parent">
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+  </div>
+  <div class="parent">
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+  </div>
+</body>
+</html>

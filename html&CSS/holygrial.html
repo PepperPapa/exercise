@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>holy grial layout</title>
+  <style>
+    html, body {
+      margin: 0;
+    }
+    header,
+    footer {
+      background-color: gray;
+    }
+    .holygrial-content {
+      background-color: lightgray;
+    }
+    .holygrial-nav {
+      background-color: lightblue;
+    }
+    .holygrial-ads {
+      background-color: orange;
+    }
+    .holygrial {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+    header,
+    footer {
+      /*flex: 1;*/
+      flex: 0 0 4em;
+    }
+    .holygrial-body {
+      display: flex;
+      flex: 1;
+    }
+    .holygrial-content {
+      flex: 1;
+    }
+    .holygrial-nav,
+    .holygrial-ads {
+      flex: 0 0 12em;
+    }
+    .holygrial-nav {
+      order: -1;
+    }
+    @media all and (max-width: 768px) {
+      .holygrial-body {
+        flex-direction: column;
+        flex: 1;
+      }
+      .holygrial-nav,
+      .holygrial-content,
+      .holygrial-ads {
+        flex: auto;
+      }
+    }
+  </style>
+</head>
+<body class="holygrial">
+  <header>#Header</header>
+  <div class="holygrial-body">
+    <main class="holygrial-content">#Main</main>
+    <nav class="holygrial-nav">#Left</nav>
+    <aside class="holygrial-ads">#Right</aside>
+  </div>
+  <footer>#Footer</footer>
+</body>
+</html>
