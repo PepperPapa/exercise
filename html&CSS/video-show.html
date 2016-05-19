@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>viedo show demo</title>
+  <style>
+    html, body {
+      margin: 0;
+      font: 12px/1.5em Helvetica, Arial, sans-serif;
+    }
+    a {
+      color: #2b93d2;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #ed68c4;
+      text-decoration: underline;
+    }
+    .v_show {
+      margin: 10px auto;
+      overflow: hidden;
+      width: 595px;
+      height: 196px;
+    }
+    .v_caption {
+      overflow: hidden;
+      box-sizing: border-box;
+      margin: 0;
+      height: 35px;
+      border-radius: 5px 5px 0 0;
+      border: 1px solid #bbb;
+      background-color: #ddd;
+      background: -webkit-linear-gradient(top, #eee 0%, #ddd 100%);
+      background: -ms-linear-gradient(top, #eee 0%, #ddd 100%);
+      background: -moz-linear-gradient(top, #eee 0%, #ddd 100%);
+      background: -o-linear-gradient(top, #eee 0%, #ddd 100%);
+      background: linear-gradient(top, #eee 0%, #ddd 100%);
+    }
+    .v_caption h2 {
+      float: left;
+      margin: 0;
+      width: 80px;
+      line-height: 35px;
+    }
+    .highlight_tip {
+      float: left;
+      left: 80px;
+      height: 35px;
+    }
+    .highlight_tip span{
+      display: inline-block;
+      margin-top: 14px;
+      line-height: 35px;
+      text-indent: -9999px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: white;
+    }
+    .highlight_tip .current {
+      background-color: orange;
+    }
+    .change_btn {
+      float: left;
+    }
+    .change_btn span {
+      line-height: 35px;
+    }
+    .v_caption em {
+      float: right;
+      line-height: 35px;
+    }
+    .v_content {
+      margin: 0;
+      box-sizing: border-box;
+      width: 595px;
+      height: 161px;
+      border-left: 1px solid #bbb;
+      border-right: 1px solid #bbb;
+      border-bottom: 1px solid #bbb;
+    }
+    ul {
+      margin: 0;
+      list-style: none;
+    }
+    ul li {
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="v_show">
+    <div class="v_caption">
+      <h2 class="cartoon" title="卡通动漫">卡通动漫</h2>
+      <div class="highlight_tip">
+        <span class="current">1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+      </div>
+      <div class="change_btn">
+        <span class="prev">上一页</span>
+        <span class="next">下一页</span>
+      </div>
+      <em><a href="#">更多>></a></em>
+    </div>
+    <div class="v_content">
+      <div class="v_content_list">
+        <ul>
+          <li>
+            <a href="#">
+              <img src="images/01.jpg" alt="海贼王">
+              <h4><a href="#">海贼王</a></h4>
+              <span>播放:<em>28,276</em></span>
+            </a>
+            <h4></h4>
+          </li>
+          <li>
+            <a href="#">
+              <img src="images/01.jpg" alt="海贼王">
+              <h4><a href="#">海贼王</a></h4>
+              <span>播放:<em>28,276</em></span>
+            </a>
+            <h4></h4>
+          </li>
+          <li>
+            <a href="#">
+              <img src="images/01.jpg" alt="海贼王">
+              <h4><a href="#">海贼王</a></h4>
+              <span>播放:<em>28,276</em></span>
+            </a>
+            <h4></h4>
+          </li>
+          <li>
+            <a href="#">
+              <img src="images/01.jpg" alt="海贼王">
+              <h4><a href="#">海贼王</a></h4>
+              <span>播放:<em>28,276</em></span>
+            </a>
+            <h4></h4>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

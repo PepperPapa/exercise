@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>simulate jQuery</title>
+</head>
+<body>
+  <h1>implement simple jQuery</h1>
+  <div>
+    <img id="img1" src="images/google.png" alt="logo"><br>
+    <img id="img2" src="images/google.png" alt="logo"><br>
+  </div>
+  <button id="btn" type="button" name="button">点击我</button>
+  <script>
+    var $ = function(selector, context) {
+      // TODO: zx context怎么用？
+      return new $.fn.init(selector, context);
+    }
+    $.fn = $.prototype;
+    $.fn.init = function(selector, context) {
+      context = context || document;
+      var nodeList = context.querySelectorAll(selector, context);
+      this.length = nodeList.length;
+      for (var i = 0; i < nodeList.length; i++) {
+        this[i] = nodeList[i]
+      }
+      return this;
+    }
+    $.fn.init.prototype = $.fn;
+    $.fn.each = function(fn) {
+      for (var i = 0; i < this.length; i++) {
+        fn.call(this[i], i, this[i]);
+      }
+    }
+    $.fn.hide = function() {
+      this.each(function() {
+        this.style.display = "none";
+      })
+    }
+    $("img").hide();
+  </script>
+</body>
+</html>
