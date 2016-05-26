@@ -12,32 +12,168 @@
   </div>
   <button id="btn" type="button" name="button">点击我</button>
   <script>
-    var $ = function(selector, context) {
-      // TODO: zx context怎么用？
-      return new $.fn.init(selector, context);
-    }
-    $.fn = $.prototype;
-    $.fn.init = function(selector, context) {
-      context = context || document;
-      var nodeList = context.querySelectorAll(selector, context);
-      this.length = nodeList.length;
-      for (var i = 0; i < nodeList.length; i++) {
-        this[i] = nodeList[i]
-      }
-      return this;
-    }
-    $.fn.init.prototype = $.fn;
-    $.fn.each = function(fn) {
-      for (var i = 0; i < this.length; i++) {
-        fn.call(this[i], i, this[i]);
-      }
-    }
-    $.fn.hide = function() {
-      this.each(function() {
-        this.style.display = "none";
-      })
-    }
-    $("img").hide();
+    (function() {
+      // version 2.0
+      // version 1.0版本中的函数F显得突兀，本版本对其进行处理
+      // 思路是把F也整合进$中去：
+      // $.fn代替F.prototype
+      // $.fn.init代替F
+
+      var $ = function(selector) {
+        // $(selector)返回一个可以进行各种操作的对象，jQuery中返回的是jQuery对象
+        // 如果直接返回选择出的DOM对象，则无法进行各种操作，如hide，show
+        return new $.fn.init(selector);
+      };
+
+      $.fn = $.prototype;
+
+      $.fn.init = function(selector) {
+        // 仅实现ID和tagName方式的选择器
+        // this.length-表示选择器寻则的DOM元素长度
+        // this[0]...this[n]-表示每个DOM元素
+        this.length = 0;
+        if (selector[0] === "#") {
+          var element = document.getElementById(selector.slice(1));
+          if (element) {
+            this.length = 1;
+            this[0] = element;
+          }
+        } else {
+          var elements =document.getElementsByTagName(selector);
+          this.length = elements.length;
+          for (var i = 0; i < this.length; i++) {
+            this[i] = elements[i];
+          }
+        }
+      };
+
+      // $(selector)返回的实际上是$.fn.init对象,因此$.fn.init的原型应指向$.fn
+      $.fn.init.prototype = $.fn;
+
+      // 实现each方法
+      $.fn.each = function(fun) {
+        for (var i = 0; i < this.length; i++) {
+          fun(this[i]);
+        }
+        return this;  // 这里this代表jQuery对象，不代表DOM元素
+      };
+
+      // 实现hide方法
+      $.fn.hide = function() {
+        // 此处的this表示jQuery对象
+        this.each(function(element) {
+          element.style.display = "none";
+        });
+      };
+
+      // 实现show方法
+      $.fn.show = function() {
+        // 此处的this表示jQuery对象
+        this.each(function(element) {
+          element.style.display = "block";
+        });
+      };
+
+      // 实现on方法-用于事件绑定
+      $.fn.on = function(event, fun) {
+        this.each(function(element) {
+          element.addEventListener(event, fun);
+        });
+      };
+
+      window.$ = $;
+
+      // version 1.0
+      // 1.实现了ID和tagName方式的简单选择器，返回jQuery（实际是F，仅借用jQuery的概念）对象
+      // 2.实现了jQuery对象
+      // var F = function(selector) {
+      //   // 仅实现ID和tagName方式的选择器
+      //   // this.length-表示选择器寻则的DOM元素长度
+      //   // this[0]...this[n]-表示每个DOM元素
+      //   this.length = 0;
+      //   if (selector[0] === "#") {
+      //     var element = document.getElementById(selector.slice(1));
+      //     if (element) {
+      //       this.length = 1;
+      //       this[0] = element;
+      //     }
+      //   } else {
+      //     var elements =document.getElementsByTagName(selector);
+      //     this.length = elements.length;
+      //     for (var i = 0; i < this.length; i++) {
+      //       this[i] = elements[i];
+      //     }
+      //   }
+      // };
+      //
+      // var $ = function(selector) {
+      //   // $(selector)返回一个可以进行各种操作的对象，jQuery中返回的是jQuery对象
+      //   // 如果直接返回选择出的DOM对象，则无法进行各种操作，如hide，show
+      //   return new F(selector);
+      // };
+      //
+      // // 实现each方法
+      // F.prototype.each = function(fun) {
+      //   for (var i = 0; i < this.length; i++) {
+      //     fun(this[i]);
+      //   }
+      //   return this;  // 这里this代表jQuery对象，不代表DOM元素
+      // };
+      //
+      // // 实现hide方法
+      // F.prototype.hide = function() {
+      //   // 此处的this表示jQuery对象
+      //   this.each(function(element) {
+      //     element.style.display = "none";
+      //   });
+      // };
+      //
+      // // 实现show方法
+      // F.prototype.show = function() {
+      //   // 此处的this表示jQuery对象
+      //   this.each(function(element) {
+      //     element.style.display = "block";
+      //   });
+      // };
+      //
+      // // 实现on方法-用于事件绑定
+      // F.prototype.on = function(event, fun) {
+      //   this.each(function(element) {
+      //     element.addEventListener(event, fun);
+      //   });
+      // };
+
+
+      // followed by link:
+      // http://www.zhangxinxu.com/wordpress/2013/07/jquery-%E5%8E%9F%E7%90%86-%E6%9C%BA%E5%88%B6/
+
+      // var $ = function(selector, context) {
+      //   // TODO: zx context怎么用？
+      //   return new $.fn.init(selector, context);
+      // }
+      // $.fn = $.prototype;
+      // $.fn.init = function(selector, context) {
+      //   context = context || document;
+      //   var nodeList = context.querySelectorAll(selector, context);
+      //   this.length = nodeList.length;
+      //   for (var i = 0; i < nodeList.length; i++) {
+      //     this[i] = nodeList[i]
+      //   }
+      //   return this;
+      // }
+      // $.fn.init.prototype = $.fn;
+      // $.fn.each = function(fn) {
+      //   for (var i = 0; i < this.length; i++) {
+      //     fn.call(this[i], i, this[i]);
+      //   }
+      // }
+      // $.fn.hide = function() {
+      //   this.each(function() {
+      //     this.style.display = "none";
+      //   })
+      // }
+      // $("img").hide();
+    })();
   </script>
 </body>
 </html>
