@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>overflow scrollbar demo</title>
+  <style>
+    html, body {
+      position: relative;
+      margin: 0 0;
+      height: 100%;
+    }
+
+    header, main {
+      border: 1px solid gray;
+    }
+
+    main {
+      position: absolute;
+      top: 60px;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    .header {
+      border-bottom: 1px solid gray;
+    }
+    .scrollbar {
+      position: absolute;
+      top: 68px;
+      bottom: 0;
+      width: 100%;
+      overflow-x: hidden;
+      overflow-y: scroll;
+    }
+
+    /*滚动条样式*/
+    ::-webkit-scrollbar {
+		  width: 10px;
+  	} /* 这是针对缺省样式 (必须的) */
+
+    ::-webkit-scrollbar-track {
+      border-radius: 5px;
+		  background-color: lightgray;
+	  } /* 滚动条的滑轨背景颜色 */
+
+  	::-webkit-scrollbar-thumb {
+    	  border-radius: 5px;
+    	  background-color: gray;
+  	} /* 滑块颜色 */
+
+  	::-webkit-scrollbar-button {
+    	  display: none;
+  	} /* 滑轨两头的监听按钮颜色 */
+
+  	::-webkit-scrollbar-corner {
+  		  background-color: lightgray;
+  	} /* 横向滚动条和纵向滚动条相交处尖角的颜色 */
+  </style>
+</head>
+<body>
+  <!-- 说明：
+  该练习达到以下三个目的：
+  1.整个页面占满一屏，浏览器窗口变化也不会出现滚动条.
+  2.class为scrollbar的div元素时钟出现垂直方向的滚动条.
+  3.滚动条css样式修改.
+   -->
+  <header>
+    <h3>the whole page has no scroll bar</h3>
+  </header>
+  <main>
+    <div class="header">
+      <h2>this area has no scrollbar</h2>
+    </div>
+
+    <div class="scrollbar">
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+      <p>this area has scrollbar</p>
+    </div>
+  </main>
+</body>
+</html>
