@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>float elements container border</title>
+  <style>
+    .float-container,
+    .float-container2 {
+      border: 2px solid red;
+      margin-bottom: 10px;
+    }
+    .float-container p {
+      float: left;
+      width: 350px;
+    }
+    .clear {
+      clear: both;
+    }
+
+    .float-container2 {
+      overflow: auto;
+    }
+
+    .float-container2 p {
+      float: left;
+      width: 350px;
+    }
+  </style>
+</head>
+<body>
+  <h1>问题描述：如果某个container的子元素全部是浮动元素，则该container的height
+  会认为为0，设置border边框将会只显示两条合并的直线</h1>
+
+  <!-- 传统解决方案 -->
+  <div class="float-container">
+    <p>Ruby 和Python 相比有什么优势和缺陷？ - 编程语言- 知乎
+https://www.zhihu.com/question/19552194
+Ruby是一种魔幻语言，而Python是一种简约语言 具体可以看 .....
+但这个更干净并不是a.length vs. len(a)，名词在前还是动词在前的问题，
+否则OOP也未免太肤浅了。</p>
+    <p>Ruby 和Python 相比有什么优势和缺陷？ - 编程语言- 知乎
+    https://www.zhihu.com/question/19552194
+    Ruby是一种魔幻语言，而Python是一种简约语言 具体可以看 .....
+    但这个更干净并不是a.length vs. len(a)，名词在前还是动词在前的问题，
+    否则OOP也未免太肤浅了。</p>
+    <p>Ruby 和Python 相比有什么优势和缺陷？ - 编程语言- 知乎
+https://www.zhihu.com/question/19552194
+Ruby是一种魔幻语言，而Python是一种简约语言 具体可以看 .....
+但这个更干净并不是a.length vs. len(a)，名词在前还是动词在前的问题，
+否则OOP也未免太肤浅了。</p>
+    <p>Ruby 和Python 相比有什么优势和缺陷？ - 编程语言- 知乎
+    https://www.zhihu.com/question/19552194
+    Ruby是一种魔幻语言</p>
+    <!-- 增加一个额外元素用来清除浮动，注：如果是p元素则达不到效果 -->
+    <div class="clear"></div>
+  </div>
+
+  <!-- 无需增加额外元素的解决方案 -->
+  <div class="float-container2">
+    <p>Ruby 和Python 相比有什么优势和缺陷？ - 编程语言- 知乎
+https://www.zhihu.com/question/19552194
+Ruby是一种魔幻语言，而Python是一种简约语言 具体可以看 .....
+但这个更干净并不是a.length vs. len(a)，名词在前还是动词在前的问题，
+否则OOP也未免太肤浅了。</p>
+    <p>Ruby 和Python 相比有什么优势和缺陷？ - 编程语言- 知乎
+    https://www.zhihu.com/question/19552194
+    Ruby是一种魔幻语言，而Python是一种简约语言 具体可以看 .....
+    但这个更干净并不是a.length vs. len(a)，名词在前还是动词在前的问题，
+    否则OOP也未免太肤浅了。</p>
+    <p>Ruby 和Python 相比有什么优势和缺陷？ - 编程语言- 知乎
+https://www.zhihu.com/question/19552194
+Ruby是一种魔幻语言，而Python是一种简约语言 具体可以看 .....
+但这个更干净并不是a.length vs. len(a)，名词在前还是动词在前的问题，
+否则OOP也未免太肤浅了。</p>
+    <p>Ruby 和Python 相比有什么优势和缺陷？ - 编程语言- 知乎
+    https://www.zhihu.com/question/19552194
+    Ruby是一种魔幻语言</p>
+  </div>
+</body>
+</html>
