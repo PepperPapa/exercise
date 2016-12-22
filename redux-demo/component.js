@@ -5,16 +5,23 @@ import { getPost, responsePost } from "./actionCreator";
 import logger from "./logger";
 import crashReporter from "./report";
 
-function applyMiddlewareByMonkeypatching(store, middlewares) {
+// chainging middlewares
+// store is not changed
+function applyMiddleware(store, middlewares) {
   middlewares = middlewares.slice();
   middlewares.reverse();
 
+  let dispatch = store.dispatch;
   middlewares.forEach(function(middleware) {
-    store.dispatch = middleware(store);
+    dispatch = middleware(store)(dispatch);
   });
+
+  return Object.assign({}, store, {dispatch});
 }
 
-applyMiddlewareByMonkeypatching(store, [crashReporter, logger]);
+// newStore.dispatch will do logging and crash reporting
+// store not changed
+var newStore = applyMiddleware(store, [logger, crashReporter]);
 
 export default class App extends React.Component {
   constructor(props) {
@@ -31,7 +38,7 @@ export default class App extends React.Component {
     });
 
     let action = getPost(1);
-    store.dispatch(action);
+    newStore.dispatch(action);
   }
 
   render() {

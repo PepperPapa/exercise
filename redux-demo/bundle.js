@@ -23747,16 +23747,23 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	function applyMiddlewareByMonkeypatching(store, middlewares) {
+	// chainging middlewares
+	// store is not changed
+	function applyMiddleware(store, middlewares) {
 	  middlewares = middlewares.slice();
 	  middlewares.reverse();
 	
+	  var dispatch = store.dispatch;
 	  middlewares.forEach(function (middleware) {
-	    store.dispatch = middleware(store);
+	    dispatch = middleware(store)(dispatch);
 	  });
+	
+	  return Object.assign({}, store, { dispatch: dispatch });
 	}
 	
-	applyMiddlewareByMonkeypatching(_store2.default, [_report2.default, _logger2.default]);
+	// newStore.dispatch will do logging and crash reporting
+	// store not changed
+	var newStore = applyMiddleware(_store2.default, [_logger2.default, _report2.default]);
 	
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -23781,7 +23788,7 @@
 	      });
 	
 	      var action = (0, _actionCreator.getPost)(1);
-	      _store2.default.dispatch(action);
+	      newStore.dispatch(action);
 	    }
 	  }, {
 	    key: "render",
@@ -23907,11 +23914,13 @@
 	  // save input store.dispatch method
 	  var next = store.dispatch;
 	
-	  return function dispatchAndLog(action) {
-	    console.log("dispatching", action);
-	    var result = next(action);
-	    console.log("next state", store.getState());
-	    return result;
+	  return function wrapDispatchToAddLogging(next) {
+	    return function dispatchAndLog(action) {
+	      console.log("dispatching", action);
+	      var result = next(action);
+	      console.log("next state", store.getState());
+	      return result;
+	    };
 	  };
 	}
 
@@ -23929,13 +23938,15 @@
 	  // 保存传入的store的dispatch方法
 	  var next = store.dispatch;
 	
-	  return function dispatchAndReportErrors(action) {
-	    try {
-	      return next(action);
-	    } catch (err) {
-	      console.error("Caught an exception!", err);
-	      throw err;
-	    }
+	  return function wrapDispatchToAddLogging(next) {
+	    return function dispatchAndReportErrors(action) {
+	      try {
+	        return next(action);
+	      } catch (err) {
+	        console.error("Caught an exception!", err);
+	        throw err;
+	      }
+	    };
 	  };
 	}
 
