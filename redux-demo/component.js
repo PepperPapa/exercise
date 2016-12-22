@@ -5,6 +5,9 @@ import { getPost, responsePost } from "./actionCreator";
 import patchStoreToAddLogging from "./logger";
 import patchStoreToAddCrashReporting from "./report";
 
+patchStoreToAddLogging(store);
+patchStoreToAddCrashReporting(store);
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +23,6 @@ export default class App extends React.Component {
     });
 
     let action = getPost(1);
-    patchStoreToAddLogging(store);
     store.dispatch(action);
   }
 
