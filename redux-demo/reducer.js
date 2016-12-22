@@ -1,7 +1,5 @@
 import { combineReducers } from "redux";
 
-import { getPost, responsePost } from "./actionCreator";
-
 var rootState = {
     isFetching: false,
     posts: []
@@ -9,11 +7,11 @@ var rootState = {
 
 
 function getPostReducer(state = false, action) {
-  return {isFetching: true};
+  return "loading...";
 }
 
 function responsePostReducer(state = [], action) {
-  return {posts: action.posts};
+  return state;
 }
 
 const rootReducer = combineReducers({

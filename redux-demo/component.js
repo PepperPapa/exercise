@@ -3,6 +3,14 @@ import React from "react";
 import store from "./store";
 import { getPost, responsePost } from "./actionCreator";
 
+// wrapping dispatch
+function dispatchAndLog(store, action) {
+  console.log("dispatching", action);
+  store.dispatch(action);
+  console.log("next state", store.getState());
+}
+
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -13,9 +21,12 @@ export default class App extends React.Component {
   handleClick() {
     let self = this;
     store.subscribe(function() {
-      self.setState({content: "isFetching"});
+      let state = store.getState().isFetching;
+      self.setState({content: state});
     });
-    store.dispatch(getPost(1));
+
+    let action = getPost(1);
+    dispatchAndLog(store, action);
   }
 
   render() {
