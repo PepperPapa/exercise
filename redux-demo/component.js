@@ -3,11 +3,14 @@ import React from "react";
 import store from "./store";
 import { getPost, responsePost } from "./actionCreator";
 
-// wrapping dispatch
-function dispatchAndLog(store, action) {
+// monkey pactching
+// 这里保存store.dispatch原始函数 
+let next = store.dispatch;
+store.dispatch = function dispatchAndLog(action) {
   console.log("dispatching", action);
-  store.dispatch(action);
+  let result = next(action);
   console.log("next state", store.getState());
+  return result;
 }
 
 
@@ -26,7 +29,7 @@ export default class App extends React.Component {
     });
 
     let action = getPost(1);
-    dispatchAndLog(store, action);
+    store.dispatch(action);
   }
 
   render() {
