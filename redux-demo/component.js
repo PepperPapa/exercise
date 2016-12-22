@@ -2,26 +2,6 @@ import React from "react";
 
 import store from "./store";
 import { getPost, responsePost } from "./actionCreator";
-import logger from "./logger";
-import crashReporter from "./report";
-
-// chainging middlewares
-// store is not changed
-function applyMiddleware(store, middlewares) {
-  middlewares = middlewares.slice();
-  middlewares.reverse();
-
-  let dispatch = store.dispatch;
-  middlewares.forEach(function(middleware) {
-    dispatch = middleware(store)(dispatch);
-  });
-
-  return Object.assign({}, store, {dispatch});
-}
-
-// newStore.dispatch will do logging and crash reporting
-// store not changed
-var newStore = applyMiddleware(store, [logger, crashReporter]);
 
 export default class App extends React.Component {
   constructor(props) {
@@ -38,7 +18,7 @@ export default class App extends React.Component {
     });
 
     let action = getPost(1);
-    newStore.dispatch(action);
+    store.dispatch(action);
   }
 
   render() {

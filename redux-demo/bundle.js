@@ -23731,14 +23731,6 @@
 	
 	var _actionCreator = __webpack_require__(219);
 	
-	var _logger = __webpack_require__(220);
-	
-	var _logger2 = _interopRequireDefault(_logger);
-	
-	var _report = __webpack_require__(221);
-	
-	var _report2 = _interopRequireDefault(_report);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23746,24 +23738,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	// chainging middlewares
-	// store is not changed
-	function applyMiddleware(store, middlewares) {
-	  middlewares = middlewares.slice();
-	  middlewares.reverse();
-	
-	  var dispatch = store.dispatch;
-	  middlewares.forEach(function (middleware) {
-	    dispatch = middleware(store)(dispatch);
-	  });
-	
-	  return Object.assign({}, store, { dispatch: dispatch });
-	}
-	
-	// newStore.dispatch will do logging and crash reporting
-	// store not changed
-	var newStore = applyMiddleware(_store2.default, [_logger2.default, _report2.default]);
 	
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -23788,7 +23762,7 @@
 	      });
 	
 	      var action = (0, _actionCreator.getPost)(1);
-	      newStore.dispatch(action);
+	      _store2.default.dispatch(action);
 	    }
 	  }, {
 	    key: "render",
@@ -23831,9 +23805,17 @@
 	
 	var _reducer2 = _interopRequireDefault(_reducer);
 	
+	var _logger = __webpack_require__(220);
+	
+	var _logger2 = _interopRequireDefault(_logger);
+	
+	var _report = __webpack_require__(221);
+	
+	var _report2 = _interopRequireDefault(_report);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var store = (0, _redux.createStore)(_reducer2.default);
+	var store = (0, _redux.createStore)(_reducer2.default, (0, _redux.applyMiddleware)(_logger2.default, _report2.default));
 	exports.default = store;
 
 /***/ },
