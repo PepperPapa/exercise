@@ -2,11 +2,19 @@ import React from "react";
 
 import store from "./store";
 import { getPost, responsePost } from "./actionCreator";
-import patchStoreToAddLogging from "./logger";
-import patchStoreToAddCrashReporting from "./report";
+import logger from "./logger";
+import crashReporter from "./report";
 
-patchStoreToAddLogging(store);
-patchStoreToAddCrashReporting(store);
+function applyMiddlewareByMonkeypatching(store, middlewares) {
+  middlewares = middlewares.slice();
+  middlewares.reverse();
+
+  middlewares.forEach(function(middleware) {
+    store.dispatch = middleware(store);
+  });
+}
+
+applyMiddlewareByMonkeypatching(store, [crashReporter, logger]);
 
 export default class App extends React.Component {
   constructor(props) {

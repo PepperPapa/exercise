@@ -23747,8 +23747,16 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	(0, _logger2.default)(_store2.default);
-	(0, _report2.default)(_store2.default);
+	function applyMiddlewareByMonkeypatching(store, middlewares) {
+	  middlewares = middlewares.slice();
+	  middlewares.reverse();
+	
+	  middlewares.forEach(function (middleware) {
+	    store.dispatch = middleware(store);
+	  });
+	}
+	
+	applyMiddlewareByMonkeypatching(_store2.default, [_report2.default, _logger2.default]);
 	
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -23894,13 +23902,12 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.default = patchStoreToAddLogging;
-	function patchStoreToAddLogging(store) {
-	  // 保存store.dispatch的原始dispatch函数
+	exports.default = logger;
+	function logger(store) {
+	  // save input store.dispatch method
 	  var next = store.dispatch;
 	
-	  // 重写dispatch方法
-	  store.dispatch = function dispatchAndLog(action) {
+	  return function dispatchAndLog(action) {
 	    console.log("dispatching", action);
 	    var result = next(action);
 	    console.log("next state", store.getState());
@@ -23917,13 +23924,12 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.default = patchStoreToAddCrashReporting;
-	function patchStoreToAddCrashReporting(store) {
+	exports.default = crashReporter;
+	function crashReporter(store) {
 	  // 保存传入的store的dispatch方法
 	  var next = store.dispatch;
 	
-	  // 重新dispatch方法
-	  store.dispatch = function dispatchAndReportErrors(action) {
+	  return function dispatchAndReportErrors(action) {
 	    try {
 	      return next(action);
 	    } catch (err) {
