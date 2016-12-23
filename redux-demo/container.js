@@ -1,9 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 
-// import store from "./store";
 import { requestPost, receivePost } from "./actionCreator";
-import Root from "./components";
+import Root from "./component";
 
 class App extends React.Component {
   constructor(props) {
@@ -12,16 +11,8 @@ class App extends React.Component {
   }
 
   handleClick() {
-    // let self = this;
-    // store.subscribe(function() {
-    //   let state = store.getState();
-    //   self.setState({content:
-    //               state.isFetching ? "loading..." : state.posts.toString()});
-    // });
-
-    // let action = requestPost(1);
-    // store.dispatch(action);
-    console.log("click");
+    let action = requestPost(1);
+    this.props.dispatch(action);
   }
 
   render() {
@@ -41,10 +32,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispath: function() {
-      return dispath
-    }
+    dispath: dispatch
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
