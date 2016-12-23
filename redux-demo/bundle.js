@@ -52,8 +52,6 @@
 	
 	var _reactDom = __webpack_require__(32);
 	
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-	
 	var _reactRedux = __webpack_require__(178);
 	
 	var _component = __webpack_require__(216);
@@ -66,7 +64,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	_reactDom2.default.render(_react2.default.createElement(
+	(0, _reactDom.render)(_react2.default.createElement(
 	  _reactRedux.Provider,
 	  { store: _store2.default },
 	  _react2.default.createElement(_component2.default, null)
@@ -23725,11 +23723,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _store = __webpack_require__(217);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _actionCreator = __webpack_require__(219);
+	var _actionCreator = __webpack_require__(221);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -23739,32 +23733,16 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var App = function (_React$Component) {
-	  _inherits(App, _React$Component);
+	var Root = function (_React$Component) {
+	  _inherits(Root, _React$Component);
 	
-	  function App(props) {
-	    _classCallCheck(this, App);
+	  function Root(props) {
+	    _classCallCheck(this, Root);
 	
-	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
-	
-	    _this.state = { content: "" };
-	    _this.handleClick = _this.handleClick.bind(_this);
-	    return _this;
+	    return _possibleConstructorReturn(this, (Root.__proto__ || Object.getPrototypeOf(Root)).call(this, props));
 	  }
 	
-	  _createClass(App, [{
-	    key: "handleClick",
-	    value: function handleClick() {
-	      var self = this;
-	      _store2.default.subscribe(function () {
-	        var state = _store2.default.getState().isFetching;
-	        self.setState({ content: state });
-	      });
-	
-	      var action = (0, _actionCreator.getPost)(1);
-	      _store2.default.dispatch(action);
-	    }
-	  }, {
+	  _createClass(Root, [{
 	    key: "render",
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -23772,22 +23750,22 @@
 	        null,
 	        _react2.default.createElement(
 	          "button",
-	          { onClick: this.handleClick },
+	          { onClick: this.props.handleClick },
 	          "\u70B9\u51FB\u52A0\u8F7D..."
 	        ),
 	        _react2.default.createElement(
 	          "p",
 	          null,
-	          this.state.content
+	          this.props.isFetching ? "loading..." : "empty"
 	        )
 	      );
 	    }
 	  }]);
 	
-	  return App;
+	  return Root;
 	}(_react2.default.Component);
 	
-	exports.default = App;
+	exports.default = Root;
 
 /***/ },
 /* 217 */
@@ -23805,17 +23783,17 @@
 	
 	var _reducer2 = _interopRequireDefault(_reducer);
 	
-	var _logger = __webpack_require__(220);
+	var _logger = __webpack_require__(219);
 	
 	var _logger2 = _interopRequireDefault(_logger);
 	
-	var _report = __webpack_require__(221);
+	var _report = __webpack_require__(220);
 	
 	var _report2 = _interopRequireDefault(_report);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var store = (0, _redux.createStore)(_reducer2.default, (0, _redux.applyMiddleware)(_logger2.default, _report2.default));
+	var store = (0, _redux.createStore)(_reducer2.default);
 	exports.default = store;
 
 /***/ },
@@ -23830,60 +23808,48 @@
 	
 	var _redux = __webpack_require__(189);
 	
+	var _actionCreator = __webpack_require__(221);
+	
 	var rootState = {
 	  isFetching: false,
 	  posts: []
 	};
 	
-	function getPostReducer() {
+	function requestPostReducer() {
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 	  var action = arguments[1];
 	
-	  return "loading...";
+	  switch (action.type) {
+	    case _actionCreator.REQUEST_POST:
+	      return true;
+	      break;
+	    default:
+	      return state;
+	  }
 	}
 	
-	function responsePostReducer() {
+	function receivePostReduce() {
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 	  var action = arguments[1];
 	
-	  return state;
+	  switch (action.type) {
+	    case _actionCreator.RECEIVE_POST:
+	      return action.posts;
+	      break;
+	    default:
+	      return state;
+	  }
 	}
 	
 	var rootReducer = (0, _redux.combineReducers)({
-	  isFetching: getPostReducer,
-	  posts: responsePostReducer
+	  isFetching: requestPostReducer,
+	  posts: receivePostReduce
 	});
 	
 	exports.default = rootReducer;
 
 /***/ },
 /* 219 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var REQUEST_FTECH = "request_fetch";
-	var RESPONSE_FTECH = "response_fetch";
-	
-	var getPost = exports.getPost = function getPost(id) {
-	  return {
-	    type: REQUEST_FTECH,
-	    id: id
-	  };
-	};
-	
-	var responsePost = exports.responsePost = function responsePost(json) {
-	  return {
-	    type: RESPONE_FETCH,
-	    res: json
-	  };
-	};
-
-/***/ },
-/* 220 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -23907,7 +23873,7 @@
 	}
 
 /***/ },
-/* 221 */
+/* 220 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -23929,6 +23895,34 @@
 	        throw err;
 	      }
 	    };
+	  };
+	}
+
+/***/ },
+/* 221 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.requestPost = requestPost;
+	exports.receivePost = receivePost;
+	var REQUEST_POST = exports.REQUEST_POST = "request_post";
+	var RECEIVE_POST = exports.RECEIVE_POST = "receive_post";
+	
+	function requestPost(id) {
+	  return {
+	    type: REQUEST_POST,
+	    id: id
+	  };
+	}
+	
+	function receivePost(response) {
+	  return {
+	    type: RESPONE_FETCH,
+	    post: response
 	  };
 	}
 

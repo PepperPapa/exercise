@@ -1,16 +1,16 @@
-const REQUEST_FTECH = "request_fetch";
-const RESPONSE_FTECH = "response_fetch";
+export const REQUEST_POST = "request_post";
+export const RECEIVE_POST = "receive_post";
 
-export let getPost = function (id) {
+export function requestPost(id) {
   return {
-    type: REQUEST_FTECH,
+    type: REQUEST_POST,
     id: id
   };
 }
 
-export let responsePost = function (json) {
+export function receivePost(response) {
   return {
     type: RESPONE_FETCH,
-    res: json
+    post: response
   };
 }
