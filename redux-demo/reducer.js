@@ -4,33 +4,27 @@ import { REQUEST_POST, RECEIVE_POST } from "./actionCreator";
 
 var rootState = {
     isFetching: false,
-    posts: []
+    post: "empty"
 }
 
 
-function requestPostReducer(state = false, action) {
+function rootReducer(state = rootState, action) {
   switch (action.type) {
     case REQUEST_POST:
-      return true;
+      return {
+        isFetching: true,
+        post: {}
+      }
       break;
-    default:
-      return state;
-  }
-}
-
-function receivePostReduce(state = [], action) {
-  switch (action.type) {
     case RECEIVE_POST:
-      return action.posts;
+      return {
+        isFetching: false,
+        post: action.post
+      }
       break;
     default:
       return state;
   }
 }
-
-const rootReducer = combineReducers({
-  isFetching: requestPostReducer,
-  posts: receivePostReduce
-});
 
 export default rootReducer;

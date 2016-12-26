@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { requestPost, receivePost } from "./actionCreator";
+import { requestPost, receivePost, fetchPost } from "./actionCreator";
 import Root from "./component";
 
 class App extends React.Component {
@@ -11,7 +11,7 @@ class App extends React.Component {
   }
 
   handleClick() {
-    let action = requestPost(1);
+    let action = fetchPost("frontend");
     this.props.dispatch(action);
   }
 
@@ -19,6 +19,7 @@ class App extends React.Component {
     return (
       <Root
           isFetching={this.props.isFetching}
+          post={this.props.post}
           handleClick={this.handleClick} />
     )
   }
@@ -26,7 +27,8 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    isFetching: state.isFetching
+    isFetching: state.isFetching,
+    post: JSON.stringify(state.post)
   }
 }
 
