@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>transition demo</title>
+  <style>
+    body {
+      padding: 20px;
+    }
+    
+    .box {
+      width: 150px;
+      height: 150px;
+      background-color: pink;
+      transition: transform 1s ease-in-out;
+    }
+    .box.clicked {
+      transform: translate(100px, 150px) rotate(15deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
+  <script>
+    $(".box").on("mouseover", function() {
+      $(this).toggleClass("clicked");
+    });
+  </script>
+</body>
+</html>
