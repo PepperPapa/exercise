@@ -54,11 +54,11 @@
 	
 	var _reactRedux = __webpack_require__(183);
 	
-	var _component = __webpack_require__(231);
+	var _container = __webpack_require__(231);
 	
-	var _component2 = _interopRequireDefault(_component);
+	var _container2 = _interopRequireDefault(_container);
 	
-	var _store = __webpack_require__(233);
+	var _store = __webpack_require__(234);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -67,7 +67,7 @@
 	(0, _reactDom.render)(_react2.default.createElement(
 	  _reactRedux.Provider,
 	  { store: _store2.default },
-	  _react2.default.createElement(_component2.default, null)
+	  _react2.default.createElement(_container2.default, null)
 	), document.getElementById("root"));
 
 /***/ },
@@ -24302,6 +24302,110 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactRedux = __webpack_require__(183);
+	
+	var _actionCreator = __webpack_require__(232);
+	
+	var _component = __webpack_require__(233);
+	
+	var _component2 = _interopRequireDefault(_component);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var App = function (_React$Component) {
+	  _inherits(App, _React$Component);
+	
+	  function App(props) {
+	    _classCallCheck(this, App);
+	
+	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+	
+	    _this.handleClick = _this.handleClick.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(App, [{
+	    key: "handleClick",
+	    value: function handleClick() {
+	      var action = (0, _actionCreator.requestPost)(1);
+	      this.props.dispatch(action);
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(_component2.default, {
+	        isFetching: this.props.isFetching,
+	        handleClick: this.handleClick });
+	    }
+	  }]);
+	
+	  return App;
+	}(_react2.default.Component);
+	
+	function mapStateToProps(state) {
+	  return {
+	    isFetching: state.isFetching
+	  };
+	}
+	
+	function mapDispatchToProps(dispatch) {
+	  return {
+	    dispath: dispatch
+	  };
+	}
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(App);
+
+/***/ },
+/* 232 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.requestPost = requestPost;
+	exports.receivePost = receivePost;
+	var REQUEST_POST = exports.REQUEST_POST = "request_post";
+	var RECEIVE_POST = exports.RECEIVE_POST = "receive_post";
+	
+	function requestPost(id) {
+	  return {
+	    type: REQUEST_POST,
+	    id: id
+	  };
+	}
+	
+	function receivePost(response) {
+	  return {
+	    type: RESPONE_FETCH,
+	    post: response
+	  };
+	}
+
+/***/ },
+/* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
 	var _actionCreator = __webpack_require__(232);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -24347,35 +24451,7 @@
 	exports.default = Root;
 
 /***/ },
-/* 232 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.requestPost = requestPost;
-	exports.receivePost = receivePost;
-	var REQUEST_POST = exports.REQUEST_POST = "request_post";
-	var RECEIVE_POST = exports.RECEIVE_POST = "receive_post";
-	
-	function requestPost(id) {
-	  return {
-	    type: REQUEST_POST,
-	    id: id
-	  };
-	}
-	
-	function receivePost(response) {
-	  return {
-	    type: RESPONE_FETCH,
-	    post: response
-	  };
-	}
-
-/***/ },
-/* 233 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -24386,25 +24462,27 @@
 	
 	var _redux = __webpack_require__(194);
 	
-	var _reducer = __webpack_require__(234);
+	var _reducer = __webpack_require__(235);
 	
 	var _reducer2 = _interopRequireDefault(_reducer);
 	
-	var _logger = __webpack_require__(235);
+	var _logger = __webpack_require__(236);
 	
 	var _logger2 = _interopRequireDefault(_logger);
 	
-	var _report = __webpack_require__(236);
+	var _report = __webpack_require__(237);
 	
 	var _report2 = _interopRequireDefault(_report);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var store = (0, _redux.createStore)(_reducer2.default);
+	// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() 
+	// above statement is for redux-dev-tools extension
+	var store = (0, _redux.createStore)(_reducer2.default, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 	exports.default = store;
 
 /***/ },
-/* 234 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -24456,7 +24534,7 @@
 	exports.default = rootReducer;
 
 /***/ },
-/* 235 */
+/* 236 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -24480,7 +24558,7 @@
 	}
 
 /***/ },
-/* 236 */
+/* 237 */
 /***/ function(module, exports) {
 
 	"use strict";
