@@ -1,0 +1,23 @@
+header {
+    padding-top: .8em;
+    padding-bottom: .8em;
+    text-align: center;
+}
+
+.ad-info .thumbnail {
+    border: none;
+    border-radius: 0;
+    padding-top: 0;
+}
+
+.ad-info .thumbnail > img {
+    height: 30px;
+}
+
+.ad-info:first-child {
+    border-right: 1px solid lightgray;
+}
+
+.thumbnail .caption {
+    text-align: center;
+}
